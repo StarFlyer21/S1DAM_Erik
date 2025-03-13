@@ -2,6 +2,7 @@ package MPOO.lhd;
 
 import java.time.LocalDateTime;
 import java.util.Scanner;
+import java.time.format.DateTimeFormatter;
 
 public class Selector {
 
@@ -9,11 +10,11 @@ public class Selector {
     private String nombreInvita;
     private LocalDateTime fecha;
     private String nombreRecibe;
-    private Integer Empatia;
-    private Integer Utilidad;
-    private Integer Inteligencia;
-    private Integer Extroversion;
-    private boolean Preferente;
+    private Integer empatia;
+    private Integer utilidad;
+    private Integer inteligencia;
+    private Integer extroversion;
+    private boolean preferente;
 
 
     //Creamos el constructor
@@ -23,28 +24,52 @@ public class Selector {
 
     //Aquí creamos los métodos (el uso que le vamos a dar a los atributos)
 
-    //Este metodo recogerá el resultado de las aptitudes y las sumará
-
 
     //Con este metodo comprobamos si es preferente o no
-    public void comprobarBool(){
+    public void comprobarPreferencia(){
         Scanner sc1=new Scanner(System.in);
-        System.out.println("System.out.print(\"Es preferente? (s/n) \");\n");
+        System.out.print("System.out.print(\"Es preferente? (s/n) \");\n");
         String respuesta = sc1.nextLine().trim().toLowerCase();
 
         // Convierte la respuesta en booleano
         setPreferente(respuesta.equals("s"));
     }
+    //Este metodo recogerá el resultado de las aptitudes y las sumará
+
+    private int suma(int empatia, int utilidad, int inteligencia, int extroversion){
+        return empatia+utilidad+inteligencia+extroversion;
+    }
     public void setPreferente(boolean preferente) {
-        Preferente = preferente;
-        if(preferente) {
-            System.out.println("hola");
-        }
-        else{
-            System.out.println("adios");
-        }
+        this.preferente = preferente;
+
     }
 
+    @Override
+    public String toString(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        String fechaFormateada = getFecha().format(formatter);
+
+        double resultado = (double) suma(getEmpatia(),getUtilidad(),getInteligencia(),getExtroversion())/4;
+        if (isPreferente()){
+            resultado*=1.2;
+            if (resultado>70){
+                return "El resultado de "+ getNombreRecibe() +" es apto: " + resultado + "sobre 100, a fecha " + fechaFormateada;
+            }
+            else {
+                return "El resultado de "+ getNombreRecibe() +" es no apto: " + resultado +" sobre 100, a fecha " + fechaFormateada;
+            }
+        }
+        else {
+            if (resultado>70){
+                return "El resultado de "+ getNombreRecibe() +" es  apto: " + resultado + " sobre 100, a fecha "
+                        + fechaFormateada;
+            }
+            else {
+                return "El resultado de "+ getNombreRecibe() +" es no apto " + resultado + " sobre 100, a fecha "
+                        + fechaFormateada;
+            }
+        }
+    }
     //SETTERS Y GETTERS
 
     //Con este setter estamos creando métodos para poder almacenar la variable que le pasemos
@@ -68,33 +93,30 @@ public class Selector {
             return nombreRecibe;
     }
     public Integer getEmpatia() {
-        return Empatia;
+        return empatia;
     }
     public void setEmpatia(Integer empatia) {
-        Empatia = empatia;
+        this.empatia = empatia;
     }
     public Integer getUtilidad() {
-        return Utilidad;
+        return utilidad;
     }
     public void setUtilidad(Integer utilidad) {
-        Utilidad = utilidad;
+        this.utilidad = utilidad;
     }
     public Integer getInteligencia() {
-        return Inteligencia;
+        return inteligencia;
     }
     public void setInteligencia(Integer inteligencia) {
-        Inteligencia = inteligencia;
+       this.inteligencia= inteligencia;
     }
     public Integer getExtroversion() {
-        return Extroversion;
+        return extroversion;
     }
     public void setExtroversion(Integer extroversion) {
-        Extroversion = extroversion;
+        this.extroversion = extroversion;
     }
     public boolean isPreferente() {
-        return Preferente;
+        return preferente;
     }
-
-
-
 }

@@ -23,11 +23,10 @@ public class usoSelector {
         p.setInteligencia(sc.nextInt());
         System.out.print("Extroversion: ");
         p.setExtroversion(sc.nextInt());
-        System.out.print("Es preferente? (s/n) ");
-        p.setPreferente(sc.nextBoolean());
-        System.out.println("Los resultados son:");
-
+        p.comprobarPreferencia();
         sc.close();
-        //p.resultado();
+        //System.out.print("Es preferente? (s/n) ");
+        //p.setPreferente(sc.nextBoolean());
+        System.out.println(p.toString());
     }
 }

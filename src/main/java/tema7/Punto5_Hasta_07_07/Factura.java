@@ -38,6 +38,7 @@ public class Factura implements AutoCloseable{
         this(); // MI: Se pone sí o sí en la primera línea de código
         this.setNumFactura(matricula);
     }
+
     // NOTA: Los getter y setter los creamos de forma automática
     // Usa de Generate (botón derecho)
     public int getId() {
