@@ -2,9 +2,12 @@ package examenes.matrices.anulado.correcciones.alumno561212;
 
 import java.util.Random;
 
-public class Matriz {
+public class asdads {
 
     public static int N=3;
+
+    public asdads(int i) {
+    }
 
     public static void main(String[] args) {
         int a[][]=crea();
