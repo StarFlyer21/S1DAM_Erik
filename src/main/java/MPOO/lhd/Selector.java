@@ -17,15 +17,15 @@ public class Selector {
     private boolean preferente;
 
 
-    //Creamos el constructor
+    //Creamos el constructor (no es necesario que tenga contenido en este caso)
     public Selector() {
 
     }
 
     //Aquí creamos los métodos (el uso que le vamos a dar a los atributos)
-
-
     //Con este metodo comprobamos si es preferente o no
+    //Si el resultado es "s" es true, sino es false
+
     public void comprobarPreferencia(){
         Scanner sc1=new Scanner(System.in);
         System.out.print("System.out.print(\"Es preferente? (s/n) \");\n");
@@ -34,24 +34,32 @@ public class Selector {
         // Convierte la respuesta en booleano
         setPreferente(respuesta.equals("s"));
     }
-    //Este metodo recogerá el resultado de las aptitudes y las sumará
+    //Con este metodo podemos obtener el resultado de si es preferente o no
+    public void setPreferente(boolean preferente) {
+        this.preferente = preferente;
+    }
 
+    //Este metodo recogerá el las aptitudes y las sumará para luego poder usarlas
+    //Es privado porque no queremos acceder al metodo desde el main (no tiene sentido)
     private int suma(int empatia, int utilidad, int inteligencia, int extroversion){
         return empatia+utilidad+inteligencia+extroversion;
     }
-    public void setPreferente(boolean preferente) {
-        this.preferente = preferente;
 
-    }
-
+    //Sobreescribiremos el metodo toString, hay mucha paja y parece abrumador pero podeis ignorar la parte del DateTime
+    //El DateTime es para darle un formato a la fecha y ya, sin más
     @Override
     public String toString(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         String fechaFormateada = getFecha().format(formatter);
 
+        //Declararemos una variable resultado que será un double (porque tiene decimales) a la que le pasaremos el método suma
         double resultado = (double) suma(getEmpatia(),getUtilidad(),getInteligencia(),getExtroversion())/4;
+
+        //Si la persona es preferente, se multiplica su resultado *1.2, sino no
         if (isPreferente()){
             resultado*=1.2;
+
+            //Si el resultado es >100 será apto, sino no
             if (resultado>70){
                 return "El resultado de "+ getNombreRecibe() +" es apto: " + resultado + "sobre 100, a fecha " + fechaFormateada;
             }
@@ -70,12 +78,15 @@ public class Selector {
             }
         }
     }
+
+
     //SETTERS Y GETTERS
 
-    //Con este setter estamos creando métodos para poder almacenar la variable que le pasemos
+    //Con estos setter estamos creando métodos para poder almacenar las variables que le demos de comer
     public void setNombreInvita(String nombreInvita){
             this.nombreInvita=nombreInvita;
     }
+
     //Con estos getters estamos creando métodos para poder devolver la variable que le indiquemos en cada caso
     public String getNombreInvita(){
             return nombreInvita;

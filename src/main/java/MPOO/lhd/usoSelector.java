@@ -9,6 +9,7 @@ public class usoSelector {
         Scanner sc=new Scanner(System.in);
         Selector p = new Selector();
 
+        //Literalmente todo este bloque es agregarle el contenido a los atributos (gracias a los setter y getter)
         System.out.println("Quién invitó?");
         p.setNombreInvita(sc.next());
         p.setFecha(LocalDateTime.now());
@@ -25,8 +26,8 @@ public class usoSelector {
         p.setExtroversion(sc.nextInt());
         p.comprobarPreferencia();
         sc.close();
-        //System.out.print("Es preferente? (s/n) ");
-        //p.setPreferente(sc.nextBoolean());
+
+        //Esto hace que nuestra clase tome el metodo sobreescrito de toString y nos lo imprima formateado por pantalla
         System.out.println(p.toString());
     }
 }
